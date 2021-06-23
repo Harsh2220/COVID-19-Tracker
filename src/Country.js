@@ -12,7 +12,7 @@ function Country() {
 
     const [data, setData] = useState("")
 
-    const getdata = async() =>{
+    const getdata = async () => {
         const res = await fetch("https://corona.lmao.ninja/v2/countries");
         const acdata = await res.json();
         console.log(acdata);
@@ -29,7 +29,7 @@ function Country() {
             <TableContainer className="container" component={Paper}>
                 <Table className="table" aria-label="simple table">
                     <TableHead>
-                        <TableRow style={{backgroundColor:"lightblue"}}>
+                        <TableRow style={{ backgroundColor: "lightblue" }}>
                             <TableCell align="center" >Country</TableCell>
                             <TableCell align="center" >Active</TableCell>
                             <TableCell align="center" >Deaths</TableCell>
