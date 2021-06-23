@@ -1,0 +1,14 @@
+.country{
+    width: 90vw;
+    height: 100%;
+    padding: 50px;
+    text-align: center;
+}
+
+.container{
+    margin-top: 30px;
+}
+
+.table{
+    min-width: 650;
+}
