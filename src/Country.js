@@ -37,7 +37,7 @@ function Country() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {data.map((item) => {
+                        {data && data.map((item) => {
                             return (
                                 <TableRow>
                                     <TableCell align="center" component="th" scope="row">{item.country}</TableCell>
