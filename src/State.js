@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './Country.css';
+import './State.css';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -7,14 +7,14 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { Link } from 'react-router-dom';
 
-function Country() {
+function State() {
 
     const [data, setData] = useState("")
 
     const getdata = async () => {
-        const res = await fetch("https://corona.lmao.ninja/v2/countries");
+        var country = localStorage.getItem('countryname');
+        const res = await fetch(`https://corona.lmao.ninja/v2/countries/${country}`);
         const acdata = await res.json();
         console.log(acdata);
         setData(acdata);
@@ -24,13 +24,8 @@ function Country() {
         getdata();
     }, [])
 
-    function set(e) {
-       let countryname = e.target.innerHTML;
-       localStorage.setItem("countryname",countryname);
-    }
-
     return (
-        <div className="country">
+        <div className="state">
             <h1>COVID-19 Data</h1>
             <TableContainer className="container" component={Paper}>
                 <Table className="table" aria-label="simple table">
@@ -43,18 +38,12 @@ function Country() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {data && data.map((item) => {
-                            return (
-                                <TableRow>
-                                    <Link to="/state" onClick={set}>
-                                        <TableCell align="center" component="th" scope="row">{item.country}</TableCell>
-                                    </Link>
-                                    <TableCell align="center">{item.active}</TableCell>
-                                    <TableCell align="center">{item.deaths}</TableCell>
-                                    <TableCell align="center">{item.recovered}</TableCell>
-                                </TableRow>
-                            )
-                        })}
+                        <TableRow>
+                            <TableCell align="center" component="th" scope="row">{data.country}</TableCell>
+                            <TableCell align="center">{data.active}</TableCell>
+                            <TableCell align="center">{data.deaths}</TableCell>
+                            <TableCell align="center">{data.recovered}</TableCell>
+                        </TableRow>
                     </TableBody>
                 </Table>
             </TableContainer>
@@ -62,4 +51,4 @@ function Country() {
     )
 }
 
-export default Country
+export default State
